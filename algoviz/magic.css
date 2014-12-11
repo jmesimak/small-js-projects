@@ -1,0 +1,16 @@
+.sort-area div {
+    font: 10px sans-serif;
+    background-color: steelblue;
+    text-align: right;
+    padding: 3px;
+    margin: 1px;
+    color: white;
+}
+
+.active {
+    background-color: rgba(70,130,180, 0.5) !important;
+}
+
+.pivot {
+    background-color: #8B0000 !important;
+}
