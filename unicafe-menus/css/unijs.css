@@ -1,0 +1,54 @@
+.nearest {
+	text-align: center;
+}
+
+.pull-right input {
+  vertical-align: center !important;
+}
+
+.main-wrapper ul {
+	list-style: none;
+	padding: 0;
+}
+
+.unicafe-instance {
+	margin-top: 1em;
+	text-align: center;
+}
+
+.unicafe-instance .lead {
+	margin-top: 0.5em;
+}
+
+.unicafe-instance .lead:hover {
+	cursor: pointer;
+}
+
+.metas {
+	margin: 0;
+	padding: 0;
+	font-size: 11px;
+}
+
+.food-name {
+	margin: 0;
+	padding-bottom: 0;
+	padding-top: 0.5em;
+}
+
+.nav {
+	margin: 1em;
+}
+
+.unicafe-wrapper {
+	padding-bottom: 0.5em;
+}
+
+.distance {
+	padding: 0;
+	margin: 0;
+}
+
+.uc-head {
+	margin-bottom: 0.3em;
+}
