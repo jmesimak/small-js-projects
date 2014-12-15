@@ -52,3 +52,11 @@
 .uc-head {
 	margin-bottom: 0.3em;
 }
+
+.uc-name {
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.uc-listing-wrapper p {
+}

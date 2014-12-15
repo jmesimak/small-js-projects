@@ -1,6 +1,6 @@
 var unijs = angular.module('unijs', ['geolocation', 'LocalStorageModule']);
 
-unijs.controller('WorldCtrl', ['$scope', '$http', 'geolocation', 'localStorageService', function($scope, $http, geolocation, localStorageService) {
+unijs.controller('WorldCtrl', ['$scope', '$http', 'geolocation', 'localStorageService', '$filter', function($scope, $http, geolocation, localStorageService, $filter) {
 
 	$scope.baseurl = "http://hyy-lounastyokalu-production.herokuapp.com/publicapi/restaurant/"
 
@@ -232,7 +232,15 @@ unijs.controller('WorldCtrl', ['$scope', '$http', 'geolocation', 'localStorageSe
 
 		})
 
+    $scope.unicafeLocations = $filter('orderBy')($scope.unicafeLocations, 'distFromUser');
+
+    for (var i = 0; i < 3; i++) {
+      $scope.fetchListById($scope.unicafeLocations[i].id);
+    }
+
 	});
+
+
 
 	$scope.fetchListById = function(id) {
 		var unicafe = _.find($scope.unicafeLocations, function(unicafe) {
@@ -257,7 +265,7 @@ unijs.controller('WorldCtrl', ['$scope', '$http', 'geolocation', 'localStorageSe
 			});
 
 			unicafe.foodz = corrDay.data;
-			console.log(unicafe);
+			//console.log(unicafe);
 		})
 	}
 
@@ -265,7 +273,15 @@ unijs.controller('WorldCtrl', ['$scope', '$http', 'geolocation', 'localStorageSe
 	if (!$scope.favorites) {
 		$scope.favorites = [];
 	}
-	console.log($scope.favorites);
+
+  $scope.inFavorites = function(id) {
+    return $scope.favorites.indexOf(id) !== -1;
+  }
+
+  $scope.flipFavorite = function(id) {
+    console.log("foo");
+    $scope.inFavorites(id) ? $scope.removeFromFavorites(id) : $scope.addToFavorites(id);
+  }
 
 	$scope.addToFavorites = function(id) {
 		if ($scope.favorites.indexOf(id) === -1) {
@@ -299,7 +315,7 @@ unijs.controller('WorldCtrl', ['$scope', '$http', 'geolocation', 'localStorageSe
 
 	$scope.showClosest = function() {
 		$scope.closest = 1;
-		console.log("fo");
 	}
+
 
 }]);
