@@ -21,9 +21,9 @@
 
       <div class="nav-wrapper col-md-6 col-md-offset-3">
           <ul class="nav nav-pills">
-              <li role="presentation" ng-class="{active: closest}"><a href="#" ng-click="showClosest()">Closest</a>
+              <li role="presentation" ng-class="{active: !favs}"><a href="#" ng-click="unfav()">Closest</a>
               </li>
-              <li role="presentation" ng-class="{active: !closest}"><a href="#" ng-click="fetchFavorites()">Favorites</a>
+              <li role="presentation" ng-class="{active: favs}"><a href="#" ng-click="fav()">Favorites</a>
               </li>
               <li class="pull-right">
                   <input type="text" class="form-control" ng-model="search.name" placeholder="Search by name" />
@@ -31,9 +31,9 @@
           </ul>
       </div>
 
-        <div class="row uc-listing-wrapper" ng-show="closest">
+        <div class="row uc-listing-wrapper">
             <div class="col-md-6 col-md-offset-3">
-                <div ng-repeat="unicafe in unicafeLocations | orderBy:'distFromUser' | filter:search" class="list-group">
+                <div ng-repeat="unicafe in unicafeLocations | orderBy:'distFromUser' | filter:search | fav:favs" class="list-group">
                     <div class="list-group-item">
                         
                         <h2 class="list-group-item-heading uc-name" ng-click="fetchListById(unicafe.id)">{{unicafe.name}} <img ng-if="unicafe.loading" src="images/loader.gif"><button ng-click="flipFavorite(unicafe.id)" class="btn btn-small pull-right">{{!inFavorites(unicafe.id) ? 'Add to favorites' : 'Remove from favorites'}}</button></h2>
@@ -44,29 +44,6 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="fav-wrapper container" ng-show="!closest">
-            <div ng-repeat="unicafe in favoriteUnicafes | orderBy:'distFromUser' " class="unicafe-instance row">
-                <div class="col-md-12 unicafe-wrapper bg-info">
-                    <p class="col-md-12 lead uc-head" ng-click="fetchListById(unicafe.id)">
-                        {{unicafe.name}}
-                    </p>
-                    <p class="col-md-12 distance">
-                        {{unicafe.distFromUser}} meters
-                    </p>
-                    <div ng-if="unicafe.foodz">
-                        <h2>Menu</h2>
-                        <ul>
-                            <li ng-repeat="food in unicafe.foodz">{{food.name}}</li>
-                        </ul>
-                    </div>
-                    <button class="btn btn-default btn-sm" ng-if="favorites.indexOf(unicafe.id) === -1" ng-click="addToFavorites(unicafe.id)"><span>&lt;3</span>
-                    </button>
-                    <button class="btn btn-default btn-sm" ng-if="favorites.indexOf(unicafe.id) !== -1" ng-click="removeFromFavorites(unicafe.id)"><span>&lt;/3</span>
-                    </button>
                 </div>
             </div>
         </div>
