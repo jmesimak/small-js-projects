@@ -35,7 +35,8 @@
             <div class="col-md-6 col-md-offset-3">
                 <div ng-repeat="unicafe in unicafeLocations | orderBy:'distFromUser' | filter:search" class="list-group">
                     <div class="list-group-item">
-                        <h2 class="list-group-item-heading uc-name" ng-click="fetchListById(unicafe.id)">{{unicafe.name}} <button ng-click="flipFavorite(unicafe.id)" class="btn btn-small pull-right">{{!inFavorites(unicafe.id) ? 'Add to favorites' : 'Remove from favorites'}}</button></h2>
+                        
+                        <h2 class="list-group-item-heading uc-name" ng-click="fetchListById(unicafe.id)">{{unicafe.name}} <img ng-if="unicafe.loading" src="images/loader.gif"><button ng-click="flipFavorite(unicafe.id)" class="btn btn-small pull-right">{{!inFavorites(unicafe.id) ? 'Add to favorites' : 'Remove from favorites'}}</button></h2>
                         <div class="list-group-item-text">
                             <p>Distance from you: {{unicafe.distFromUser}} meters</p>
                             <ul>

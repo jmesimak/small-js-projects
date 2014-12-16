@@ -246,9 +246,12 @@ unijs.controller('WorldCtrl', ['$scope', '$http', 'geolocation', 'localStorageSe
 		var unicafe = _.find($scope.unicafeLocations, function(unicafe) {
 			return unicafe.id === id;
 		});
+    
+    unicafe.loading = true;
 
 		$http.get($scope.baseurl+id)
 		.success(function(data, status, headers, config) {
+      unicafe.loading = false;
 			var list = data.data;
 		
 			list = _.map(list, function(day) {
@@ -265,7 +268,6 @@ unijs.controller('WorldCtrl', ['$scope', '$http', 'geolocation', 'localStorageSe
 			});
 
 			unicafe.foodz = corrDay.data;
-			//console.log(unicafe);
 		})
 	}
 
